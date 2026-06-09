@@ -1,0 +1,7 @@
+scenario,method,sensitivity,specificity,precision,recall,f1,false_alert_rate,alerts_per_100,false_alerts_per_100
+ACE inhibitor / ARB → Hyperkalemia,Static threshold,0.8343,0.9445,0.5559,0.8343,0.6673,0.0512,11.5,5.1
+ACE inhibitor / ARB → Hyperkalemia,Temporal rule,0.6533,0.9521,0.5315,0.6533,0.5861,0.0442,9.4,4.4
+Warfarin → Elevated INR / Bleeding risk,Static threshold,0.7926,0.9657,0.7703,0.7926,0.7813,0.03,13.1,3.0
+Warfarin → Elevated INR / Bleeding risk,Temporal rule,0.7779,0.9305,0.6193,0.7779,0.6896,0.0607,15.9,6.1
+Metformin → Renal function decline,Static threshold,0.5322,0.9974,0.8966,0.5322,0.6679,0.0024,2.4,0.2
+Metformin → Renal function decline,Temporal rule,0.5088,0.9943,0.7873,0.5088,0.6181,0.0055,2.6,0.5

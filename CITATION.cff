@@ -1,0 +1,55 @@
+cff-version: 1.2.0
+message: >-
+  If you use this software or its findings, please cite both the manuscript
+  (currently in submission) and the underlying MIMIC-IV dataset.
+title: >-
+  Explainable Temporal Medication–Laboratory Conflict Detection for Early
+  Prevention of Adverse Drug Events
+type: software
+authors:
+  - given-names: Bareq
+    family-names: Maher Khudhair
+    affiliation: >-
+      Department of Medical Informatics, Imam Al-Kadhum University College
+      (IKU), Baghdad, Iraq
+    email: bareq.maher@iku.edu.iq
+  - given-names: Karrar
+    family-names: Maher Khudhair
+    affiliation: >-
+      Department of Medical Informatics, Imam Al-Kadhum University College
+      (IKU), Baghdad, Iraq
+abstract: >-
+  A research prototype that flags medication-related laboratory risks earlier
+  than fixed-threshold rules by reading each patient against their own
+  pre-drug baseline, scoring the risk on a transparent 0–100 scale, and
+  explaining every alert in language a prescriber can act on. Evaluated
+  end-to-end on 122,166 MIMIC-IV v2.2 patients across three scenarios:
+  ACE inhibitor/ARB–driven hyperkalemia, warfarin-related INR elevation, and
+  metformin-related renal decline.
+keywords:
+  - clinical decision support
+  - adverse drug events
+  - electronic health records
+  - MIMIC-IV
+  - medication safety
+  - laboratory trends
+  - explainable AI
+  - temporal modeling
+  - alert fatigue
+  - pharmacovigilance
+license: MIT
+version: 1.0.0
+date-released: '2026-06-09'
+preferred-citation:
+  type: article
+  title: >-
+    Explainable Temporal Medication–Laboratory Conflict Detection for Early
+    Prevention of Adverse Drug Events: an evaluation on 122,166 MIMIC-IV
+    patients
+  authors:
+    - given-names: Bareq
+      family-names: Maher Khudhair
+    - given-names: Karrar
+      family-names: Maher Khudhair
+  year: 2026
+  journal: Manuscript in submission

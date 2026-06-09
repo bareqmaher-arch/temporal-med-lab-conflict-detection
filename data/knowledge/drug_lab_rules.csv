@@ -1,0 +1,14 @@
+rule_id,drug_class,drug_name,lab_name,expected_direction,risk_type,severity_weight,time_window_days,threshold_value,delta_threshold,clinical_note
+1,acei_arb,,potassium,increase,hyperkalemia,0.9,30,5.3,0.5,ACE inhibitors and ARBs reduce aldosterone and renal potassium excretion; rising potassium after initiation suggests drug-associated hyperkalemia.
+2,acei_arb,,creatinine,increase,renal_decline,0.7,30,1.5,0.3,A modest creatinine rise can follow RAAS blockade; a sustained rise may indicate haemodynamic renal impairment.
+3,acei_arb,,egfr,decrease,renal_decline,0.7,30,45,0.20,Declining eGFR after ACEi/ARB initiation may indicate reduced renal perfusion and warrants review.
+4,anticoagulant,warfarin,inr,increase,bleeding,1.0,14,4.0,1.3,Rising INR on warfarin increases bleeding risk; supratherapeutic INR requires dose review.
+5,biguanide,metformin,egfr,decrease,renal_safety,0.8,60,30,0.20,Metformin accumulates in renal impairment; falling eGFR raises lactic-acidosis concern and may require dose review or discontinuation.
+6,biguanide,metformin,creatinine,increase,renal_safety,0.6,60,1.5,0.3,Rising creatinine on metformin signals declining renal clearance and reduced drug elimination.
+7,nsaid,,creatinine,increase,renal_impairment,0.7,30,1.5,0.3,NSAIDs reduce renal prostaglandin-mediated perfusion; rising creatinine suggests possible NSAID-associated renal impairment.
+8,nsaid,,egfr,decrease,renal_impairment,0.6,30,45,0.20,Declining eGFR after NSAID exposure suggests reduced renal perfusion.
+9,diuretic,,potassium,decrease,hypokalemia,0.6,30,3.2,0.5,Loop and thiazide diuretics promote potassium loss; falling potassium may indicate diuretic-associated hypokalemia.
+10,diuretic,,sodium,decrease,hyponatremia,0.6,30,130,4.0,Thiazide diuretics can cause hyponatremia; a falling sodium trend warrants review.
+11,potassium_sparing_diuretic,spironolactone,potassium,increase,hyperkalemia,0.8,30,5.3,0.5,Potassium-sparing diuretics retain potassium; rising potassium suggests drug-associated hyperkalemia.
+12,statin,,alt,increase,hepatotoxicity,0.5,90,120,40,Statins can elevate transaminases; a rising ALT trend may indicate hepatocellular stress.
+13,ssri,,sodium,decrease,hyponatremia,0.5,30,130,4.0,SSRIs can cause SIADH-related hyponatremia; a falling sodium trend warrants review.

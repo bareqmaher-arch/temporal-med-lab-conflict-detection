@@ -1,0 +1,27 @@
+# Core data stack
+numpy>=1.26
+pandas>=2.1
+scipy>=1.11
+pyarrow>=15.0
+
+# Machine learning
+scikit-learn>=1.4
+xgboost>=2.0
+lightgbm>=4.1
+shap>=0.44
+
+# Database
+SQLAlchemy>=2.0
+
+# API + dashboard
+fastapi>=0.110
+uvicorn[standard]>=0.29
+streamlit>=1.33
+plotly>=5.20
+matplotlib>=3.8
+
+# Manuscript / reporting
+python-docx>=1.1
+
+# Testing
+pytest>=8.0

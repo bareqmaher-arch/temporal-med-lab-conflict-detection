@@ -1,0 +1,119 @@
+# =====================================================================
+#  MIMIC-IV DUA compliance  (PhysioNet credentialed access)
+# =====================================================================
+# DUA clauses #3 and #4 forbid redistributing the database or any derivative
+# patient-level data. Everything here MUST stay local to a credentialed
+# machine. If a single one of these files reaches GitHub by accident,
+# delete the commit, force-push, and notify PhysioNet.
+
+# Raw MIMIC extracts (data/raw/mimiciv/hosp/*.csv.gz etc.)
+data/raw/
+
+# Anything processed from MIMIC at the patient level
+data/processed/
+data/cohort.db
+data/*.db
+data/*.sqlite
+data/*.sqlite3
+
+# Synthetic data is fine to share, but the default behaviour is exclude;
+# uncomment the !data/synthetic/ override at the bottom if you want to ship it.
+data/synthetic/
+
+# Generated artifacts that may carry patient_id-level rows
+outputs/
+# Aggregate metrics ARE safe to publish. Whitelist them explicitly:
+!outputs/metrics.json
+
+# Local-only backups of de-anonymisation maps + originals with real IDs.
+# These are produced by scripts/prepare_public_artifacts.py
+_local_only/
+
+# =====================================================================
+#  Credentials and environment
+# =====================================================================
+.env
+.env.*
+secrets/
+*.pem
+*.key
+*credentials*
+*password*
+# PhysioNet "test_pw" downloads (HTML auth pages, not really passwords,
+# but confusingly named and not useful to ship)
+test.txt
+test_pw.txt
+test_v22.txt
+
+# =====================================================================
+#  Heavy / non-source clutter
+# =====================================================================
+mimic_page.pdf
+# Legacy screenshot dump (replaced by curated docs/screenshots/)
+Images/
+images/
+paper/manuscript.backup_*.docx
+paper/old*.docx
+~$*.docx
+
+# Pre-MIMIC and intermediate-run backup tables -- contain real subject_ids
+# and serve no purpose in the public repo.
+paper/tables_5000_backup/
+paper/tables_5000_desktop_backup/
+paper/tables_*_backup/
+
+# Audit-trail helper scripts (private to development workflow)
+paper/apply_ai_fixes.py
+paper/insert_github_url.py
+
+# Manuscript stays local until journal acceptance — only the code, figures,
+# and tables needed for reproducibility are public. After acceptance we will
+# either link to the journal DOI from the README or post a preprint with DOI.
+paper/manuscript_Final.docx
+paper/manuscript*.docx
+ETML.md
+
+# =====================================================================
+#  Python
+# =====================================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.venv/
+env/
+.eggs/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# =====================================================================
+#  IDE / OS
+# =====================================================================
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+.ipynb_checkpoints/
+
+# =====================================================================
+#  Node (manuscript builder)
+# =====================================================================
+node_modules/
+package-lock.json
+
+# =====================================================================
+#  Compiled model artifacts (keep these locally; reviewers can retrain)
+# =====================================================================
+outputs/models/
+
+# =====================================================================
+#  Whitelist overrides
+# =====================================================================
+# The knowledge base is curated and contains no PHI -- keep it tracked.
+!data/knowledge/
+!data/knowledge/**

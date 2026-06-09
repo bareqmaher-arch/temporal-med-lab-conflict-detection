@@ -1,0 +1,10 @@
+Feature Category,Examples,Clinical Meaning
+Level / last value,"current_value, baseline_value, min/max in window",Where the patient is now vs their own baseline
+Change from baseline,"delta_value, percent_change","Patient-specific deviation, not population reference only"
+Temporal slope,"slope_7d, slope_14d, slope_30d, acceleration",Speed and acceleration of change over time
+Trend persistence,"consecutive_abnormal_trend, trend_started_after_drug",Whether a danger-direction trend is sustained and post-drug
+Exposure timing,"days_since_drug_start, days_since_dose_change",Temporal link between the drug and the lab change
+Renal / hepatic,"egfr, renal_impairment, hepatic_impairment",Organ-function vulnerability modifying risk
+Demographic,"age, age_risk",Age-related susceptibility
+Polypharmacy,"polypharmacy_count, high_risk_medication_count",Cumulative and overlapping medication risk
+Drug-lab knowledge,drug_risk_strength,Strength of the known drug-lab relationship

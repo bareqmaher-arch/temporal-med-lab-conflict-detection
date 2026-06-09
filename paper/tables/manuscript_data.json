@@ -1,0 +1,448 @@
+{
+ "table1_scenarios": [
+  {
+   "Drug/Class": "acei_arb (lisinopril, enalapril, ramipril...)",
+   "Laboratory Test": "potassium, creatinine, egfr",
+   "Risk Type": "hyperkalemia",
+   "Temporal Pattern": "increase of >= 0.5 within 30d, current >= 5.0",
+   "Example Alert": "ACE inhibitor / ARB → Hyperkalemia"
+  },
+  {
+   "Drug/Class": "anticoagulant (warfarin...)",
+   "Laboratory Test": "inr",
+   "Risk Type": "bleeding",
+   "Temporal Pattern": "increase of >= 1.3 within 14d, current >= 3.5",
+   "Example Alert": "Warfarin → Elevated INR / Bleeding risk"
+  },
+  {
+   "Drug/Class": "biguanide (metformin...)",
+   "Laboratory Test": "egfr, creatinine",
+   "Risk Type": "renal safety",
+   "Temporal Pattern": "decrease of >= 0.2 within 60d, current <= 45.0",
+   "Example Alert": "Metformin → Renal function decline"
+  }
+ ],
+ "table2_feature_categories": [
+  {
+   "Feature Category": "Level / last value",
+   "Examples": "current_value, baseline_value, min/max in window",
+   "Clinical Meaning": "Where the patient is now vs their own baseline"
+  },
+  {
+   "Feature Category": "Change from baseline",
+   "Examples": "delta_value, percent_change",
+   "Clinical Meaning": "Patient-specific deviation, not population reference only"
+  },
+  {
+   "Feature Category": "Temporal slope",
+   "Examples": "slope_7d, slope_14d, slope_30d, acceleration",
+   "Clinical Meaning": "Speed and acceleration of change over time"
+  },
+  {
+   "Feature Category": "Trend persistence",
+   "Examples": "consecutive_abnormal_trend, trend_started_after_drug",
+   "Clinical Meaning": "Whether a danger-direction trend is sustained and post-drug"
+  },
+  {
+   "Feature Category": "Exposure timing",
+   "Examples": "days_since_drug_start, days_since_dose_change",
+   "Clinical Meaning": "Temporal link between the drug and the lab change"
+  },
+  {
+   "Feature Category": "Renal / hepatic",
+   "Examples": "egfr, renal_impairment, hepatic_impairment",
+   "Clinical Meaning": "Organ-function vulnerability modifying risk"
+  },
+  {
+   "Feature Category": "Demographic",
+   "Examples": "age, age_risk",
+   "Clinical Meaning": "Age-related susceptibility"
+  },
+  {
+   "Feature Category": "Polypharmacy",
+   "Examples": "polypharmacy_count, high_risk_medication_count",
+   "Clinical Meaning": "Cumulative and overlapping medication risk"
+  },
+  {
+   "Feature Category": "Drug-lab knowledge",
+   "Examples": "drug_risk_strength",
+   "Clinical Meaning": "Strength of the known drug-lab relationship"
+  }
+ ],
+ "exp1_rules_vs_temporal": [
+  {
+   "scenario": "ACE inhibitor / ARB → Hyperkalemia",
+   "method": "Static threshold",
+   "sensitivity": 0.8343,
+   "specificity": 0.9445,
+   "precision": 0.5559,
+   "recall": 0.8343,
+   "f1": 0.6673,
+   "false_alert_rate": 0.0512,
+   "alerts_per_100": 11.5,
+   "false_alerts_per_100": 5.1
+  },
+  {
+   "scenario": "ACE inhibitor / ARB → Hyperkalemia",
+   "method": "Temporal rule",
+   "sensitivity": 0.6533,
+   "specificity": 0.9521,
+   "precision": 0.5315,
+   "recall": 0.6533,
+   "f1": 0.5861,
+   "false_alert_rate": 0.0442,
+   "alerts_per_100": 9.4,
+   "false_alerts_per_100": 4.4
+  },
+  {
+   "scenario": "Warfarin → Elevated INR / Bleeding risk",
+   "method": "Static threshold",
+   "sensitivity": 0.7926,
+   "specificity": 0.9657,
+   "precision": 0.7703,
+   "recall": 0.7926,
+   "f1": 0.7813,
+   "false_alert_rate": 0.03,
+   "alerts_per_100": 13.1,
+   "false_alerts_per_100": 3.0
+  },
+  {
+   "scenario": "Warfarin → Elevated INR / Bleeding risk",
+   "method": "Temporal rule",
+   "sensitivity": 0.7779,
+   "specificity": 0.9305,
+   "precision": 0.6193,
+   "recall": 0.7779,
+   "f1": 0.6896,
+   "false_alert_rate": 0.0607,
+   "alerts_per_100": 15.9,
+   "false_alerts_per_100": 6.1
+  },
+  {
+   "scenario": "Metformin → Renal function decline",
+   "method": "Static threshold",
+   "sensitivity": 0.5322,
+   "specificity": 0.9974,
+   "precision": 0.8966,
+   "recall": 0.5322,
+   "f1": 0.6679,
+   "false_alert_rate": 0.0024,
+   "alerts_per_100": 2.4,
+   "false_alerts_per_100": 0.2
+  },
+  {
+   "scenario": "Metformin → Renal function decline",
+   "method": "Temporal rule",
+   "sensitivity": 0.5088,
+   "specificity": 0.9943,
+   "precision": 0.7873,
+   "recall": 0.5088,
+   "f1": 0.6181,
+   "false_alert_rate": 0.0055,
+   "alerts_per_100": 2.6,
+   "false_alerts_per_100": 0.5
+  }
+ ],
+ "table3_model_comparison": [
+  {
+   "scenario": "ACE inhibitor / ARB → Hyperkalemia",
+   "model": "LogisticRegression",
+   "auroc": 0.9341,
+   "auprc": 0.5685,
+   "f1": 0.5376,
+   "sensitivity": 0.8741,
+   "specificity": 0.8854,
+   "brier": 0.0896,
+   "primary": false
+  },
+  {
+   "scenario": "ACE inhibitor / ARB → Hyperkalemia",
+   "model": "RandomForest",
+   "auroc": 0.9495,
+   "auprc": 0.7392,
+   "f1": 0.6965,
+   "sensitivity": 0.7298,
+   "specificity": 0.9696,
+   "brier": 0.0367,
+   "primary": false
+  },
+  {
+   "scenario": "ACE inhibitor / ARB → Hyperkalemia",
+   "model": "XGBoost",
+   "auroc": 0.9552,
+   "auprc": 0.7672,
+   "f1": 0.6915,
+   "sensitivity": 0.6324,
+   "specificity": 0.9836,
+   "brier": 0.032,
+   "primary": true
+  },
+  {
+   "scenario": "ACE inhibitor / ARB → Hyperkalemia",
+   "model": "LightGBM",
+   "auroc": 0.9524,
+   "auprc": 0.77,
+   "f1": 0.6853,
+   "sensitivity": 0.6195,
+   "specificity": 0.9843,
+   "brier": 0.0321,
+   "primary": false
+  },
+  {
+   "scenario": "Warfarin → Elevated INR / Bleeding risk",
+   "model": "LogisticRegression",
+   "auroc": 0.9127,
+   "auprc": 0.7212,
+   "f1": 0.6261,
+   "sensitivity": 0.8276,
+   "specificity": 0.8813,
+   "brier": 0.0953,
+   "primary": false
+  },
+  {
+   "scenario": "Warfarin → Elevated INR / Bleeding risk",
+   "model": "RandomForest",
+   "auroc": 0.9238,
+   "auprc": 0.7682,
+   "f1": 0.7353,
+   "sensitivity": 0.7744,
+   "specificity": 0.9517,
+   "brier": 0.055,
+   "primary": false
+  },
+  {
+   "scenario": "Warfarin → Elevated INR / Bleeding risk",
+   "model": "XGBoost",
+   "auroc": 0.9284,
+   "auprc": 0.7909,
+   "f1": 0.7405,
+   "sensitivity": 0.7112,
+   "specificity": 0.9695,
+   "brier": 0.0495,
+   "primary": true
+  },
+  {
+   "scenario": "Warfarin → Elevated INR / Bleeding risk",
+   "model": "LightGBM",
+   "auroc": 0.9243,
+   "auprc": 0.7843,
+   "f1": 0.737,
+   "sensitivity": 0.7026,
+   "specificity": 0.9703,
+   "brier": 0.0513,
+   "primary": false
+  },
+  {
+   "scenario": "Metformin → Renal function decline",
+   "model": "LogisticRegression",
+   "auroc": 0.964,
+   "auprc": 0.6949,
+   "f1": 0.4434,
+   "sensitivity": 0.932,
+   "specificity": 0.9053,
+   "brier": 0.0675,
+   "primary": false
+  },
+  {
+   "scenario": "Metformin → Renal function decline",
+   "model": "RandomForest",
+   "auroc": 0.9674,
+   "auprc": 0.7389,
+   "f1": 0.7207,
+   "sensitivity": 0.7767,
+   "specificity": 0.9842,
+   "brier": 0.0181,
+   "primary": false
+  },
+  {
+   "scenario": "Metformin → Renal function decline",
+   "model": "XGBoost",
+   "auroc": 0.9738,
+   "auprc": 0.8141,
+   "f1": 0.7513,
+   "sensitivity": 0.7184,
+   "specificity": 0.9919,
+   "brier": 0.0143,
+   "primary": true
+  },
+  {
+   "scenario": "Metformin → Renal function decline",
+   "model": "LightGBM",
+   "auroc": 0.9645,
+   "auprc": 0.7949,
+   "f1": 0.7474,
+   "sensitivity": 0.6893,
+   "specificity": 0.9935,
+   "brier": 0.016,
+   "primary": false
+  }
+ ],
+ "table4_early_detection": [
+  {
+   "scenario": "ACE inhibitor / ARB → Hyperkalemia",
+   "n_positive": 3628,
+   "n_both_alerted": 1931,
+   "mean_static_alert_day": 7.9,
+   "mean_temporal_alert_day": 8.5,
+   "mean_days_earlier": -0.7,
+   "median_days_earlier": 0.0,
+   "alert_reduction_pct": 18.1
+  },
+  {
+   "scenario": "Warfarin → Elevated INR / Bleeding risk",
+   "n_positive": 2319,
+   "n_both_alerted": 1495,
+   "mean_static_alert_day": 7.4,
+   "mean_temporal_alert_day": 6.8,
+   "mean_days_earlier": 0.5,
+   "median_days_earlier": 0.0,
+   "alert_reduction_pct": -22.1
+  },
+  {
+   "scenario": "Metformin → Renal function decline",
+   "n_positive": 342,
+   "n_both_alerted": 102,
+   "mean_static_alert_day": 20.3,
+   "mean_temporal_alert_day": 22.2,
+   "mean_days_earlier": -1.9,
+   "median_days_earlier": 0.0,
+   "alert_reduction_pct": -8.9
+  }
+ ],
+ "table5_example_explanations": [
+  {
+   "case": "ACE inhibitor / ARB → Hyperkalemia (patient Case 2)",
+   "drug": "Captopril",
+   "lab": "Potassium",
+   "baseline": 4.699999809265137,
+   "current": 9.399999618530273,
+   "risk_level": "Critical",
+   "risk_score": 86.4,
+   "explanation": "Potassium rose from 4.70 mmol/L to 9.40 mmol/L within 14 days of Captopril initiation, consistent with possible hyperkalemia. The patient also has reduced renal function (eGFR 79), older age (74), polypharmacy (5 medications), which raises the risk. Top model drivers: max_in_window (+3.59), slope_30d (-0.61), slope_7d (-0.49).",
+   "suggested_action": "Review ACE inhibitor/ARB (or potassium-sparing) dose, repeat potassium, and assess renal function and other potassium-raising drugs."
+  },
+  {
+   "case": "ACE inhibitor / ARB → Hyperkalemia (patient Case 6)",
+   "drug": "Lisinopril",
+   "lab": "Potassium",
+   "baseline": 5.349999904632568,
+   "current": 7.599999904632568,
+   "risk_level": "Critical",
+   "risk_score": 86.1,
+   "explanation": "Potassium rose from 5.35 mmol/L to 7.60 mmol/L within 14 days of Lisinopril initiation, consistent with possible hyperkalemia. The patient also has reduced renal function (eGFR 28), older age (91), which raises the risk. Top model drivers: max_in_window (+3.48), slope_30d (-0.55), baseline_value (-0.54).",
+   "suggested_action": "Review ACE inhibitor/ARB (or potassium-sparing) dose, repeat potassium, and assess renal function and other potassium-raising drugs."
+  },
+  {
+   "case": "ACE inhibitor / ARB → Hyperkalemia (patient Case 12)",
+   "drug": "Lisinopril",
+   "lab": "Potassium",
+   "baseline": 4.300000190734863,
+   "current": 8.800000190734863,
+   "risk_level": "Critical",
+   "risk_score": 84.2,
+   "explanation": "Potassium rose from 4.30 mmol/L to 8.80 mmol/L within 14 days of Lisinopril initiation, consistent with possible hyperkalemia. The patient also has reduced renal function (eGFR 55), older age (66), which raises the risk. Top model drivers: max_in_window (+3.72), slope_30d (-0.70), slope_7d (-0.53).",
+   "suggested_action": "Review ACE inhibitor/ARB (or potassium-sparing) dose, repeat potassium, and assess renal function and other potassium-raising drugs."
+  },
+  {
+   "case": "ACE inhibitor / ARB → Hyperkalemia (patient Case 1)",
+   "drug": "Lisinopril",
+   "lab": "Potassium",
+   "baseline": 4.0,
+   "current": 7.800000190734863,
+   "risk_level": "Critical",
+   "risk_score": 83.8,
+   "explanation": "Potassium rose from 4.00 mmol/L to 7.80 mmol/L within 14 days of Lisinopril initiation, consistent with possible hyperkalemia. The patient also has reduced renal function (eGFR 62), older age (78), which raises the risk. Top model drivers: max_in_window (+3.61), slope_7d (-0.52), slope_30d (-0.49).",
+   "suggested_action": "Review ACE inhibitor/ARB (or potassium-sparing) dose, repeat potassium, and assess renal function and other potassium-raising drugs."
+  },
+  {
+   "case": "Warfarin → Elevated INR / Bleeding risk (patient Case 10)",
+   "drug": "Warfarin",
+   "lab": "INR",
+   "baseline": 1.2999999523162842,
+   "current": 3.700000047683716,
+   "risk_level": "Critical",
+   "risk_score": 95.1,
+   "explanation": "INR rose from 1.30 to 3.70 within 10 days of Warfarin initiation, consistent with possible bleeding. The patient also has reduced renal function (eGFR 14), hepatic impairment, older age (79), polypharmacy (6 medications), which raises the risk. Top model drivers: slope_14d (-0.72), acceleration (-0.69), consecutive_abnormal_trend (-0.67).",
+   "suggested_action": "Review warfarin dose, recheck INR, and assess bleeding risk and interacting medications."
+  },
+  {
+   "case": "Warfarin → Elevated INR / Bleeding risk (patient Case 3)",
+   "drug": "Warfarin",
+   "lab": "INR",
+   "baseline": 1.2000000476837158,
+   "current": 5.0,
+   "risk_level": "Critical",
+   "risk_score": 94.4,
+   "explanation": "INR rose from 1.20 to 5.00 within 10 days of Warfarin initiation, consistent with possible bleeding. The patient also has reduced renal function (eGFR 100), hepatic impairment, older age (76), which raises the risk. Top model drivers: max_in_window (+2.49), variability (+1.05), current_value (+0.51).",
+   "suggested_action": "Review warfarin dose, recheck INR, and assess bleeding risk and interacting medications."
+  },
+  {
+   "case": "Warfarin → Elevated INR / Bleeding risk (patient Case 8)",
+   "drug": "Warfarin",
+   "lab": "INR",
+   "baseline": 1.2999999523162842,
+   "current": 5.900000095367432,
+   "risk_level": "Critical",
+   "risk_score": 94.4,
+   "explanation": "INR rose from 1.30 to 5.90 within 10 days of Warfarin initiation, consistent with possible bleeding. The patient also has reduced renal function (eGFR 57), hepatic impairment, older age (76), which raises the risk. Top model drivers: max_in_window (+2.65), variability (+1.61), current_value (+0.89).",
+   "suggested_action": "Review warfarin dose, recheck INR, and assess bleeding risk and interacting medications."
+  },
+  {
+   "case": "Warfarin → Elevated INR / Bleeding risk (patient Case 9)",
+   "drug": "Warfarin",
+   "lab": "INR",
+   "baseline": 1.0,
+   "current": 3.5999999046325684,
+   "risk_level": "Critical",
+   "risk_score": 94.2,
+   "explanation": "INR rose from 1.00 to 3.60 within 10 days of Warfarin initiation, consistent with possible bleeding. The patient also has reduced renal function (eGFR 14), hepatic impairment, older age (71), which raises the risk. Top model drivers: slope_14d (-0.66), max_in_window (+0.59), current_value (+0.52).",
+   "suggested_action": "Review warfarin dose, recheck INR, and assess bleeding risk and interacting medications."
+  },
+  {
+   "case": "Metformin → Renal function decline (patient Case 4)",
+   "drug": "Metformin (Glucophage)",
+   "lab": "eGFR",
+   "baseline": 53.72095598397127,
+   "current": 31.862235679865837,
+   "risk_level": "Critical",
+   "risk_score": 90.1,
+   "explanation": "eGFR declined by 41% (from 53.72 mL/min/1.73m2 to 31.86 mL/min/1.73m2) within 30 days of Metformin (Glucophage) initiation, consistent with possible renal safety. The patient also has reduced renal function (eGFR 32), hepatic impairment, older age (71), which raises the risk. Top model drivers: min_in_window (+5.19), comorbidity_count (+0.81), current_value (+0.71).",
+   "suggested_action": "Reassess metformin dose/continuation per renal function, and recheck creatinine and eGFR."
+  },
+  {
+   "case": "Metformin → Renal function decline (patient Case 11)",
+   "drug": "Metformin (Glucophage)",
+   "lab": "eGFR",
+   "baseline": 70.44230534024948,
+   "current": 44.93252318345485,
+   "risk_level": "Critical",
+   "risk_score": 86.9,
+   "explanation": "eGFR declined by 36% (from 70.44 mL/min/1.73m2 to 44.93 mL/min/1.73m2) within 30 days of Metformin (Glucophage) initiation, consistent with possible renal safety. The patient also has reduced renal function (eGFR 45), hepatic impairment, older age (74), polypharmacy (6 medications), which raises the risk. Top model drivers: min_in_window (+4.88), consecutive_abnormal_trend (-0.71), slope_14d (+0.48).",
+   "suggested_action": "Reassess metformin dose/continuation per renal function, and recheck creatinine and eGFR."
+  },
+  {
+   "case": "Metformin → Renal function decline (patient Case 7)",
+   "drug": "Metformin (Glucophage)",
+   "lab": "eGFR",
+   "baseline": 56.93387915140853,
+   "current": 27.280307923934,
+   "risk_level": "Critical",
+   "risk_score": 86.1,
+   "explanation": "eGFR declined by 52% (from 56.93 mL/min/1.73m2 to 27.28 mL/min/1.73m2) within 30 days of Metformin (Glucophage) initiation, consistent with possible renal safety. The patient also has reduced renal function (eGFR 27), older age (76), which raises the risk. Top model drivers: min_in_window (+5.20), variability (+0.80), current_value (+0.72).",
+   "suggested_action": "Reassess metformin dose/continuation per renal function, and recheck creatinine and eGFR."
+  },
+  {
+   "case": "Metformin → Renal function decline (patient Case 5)",
+   "drug": "Metformin (Glucophage)",
+   "lab": "eGFR",
+   "baseline": 45.63404936537432,
+   "current": 12.59739369319531,
+   "risk_level": "Critical",
+   "risk_score": 85.2,
+   "explanation": "eGFR declined by 72% (from 45.63 mL/min/1.73m2 to 12.60 mL/min/1.73m2) within 30 days of Metformin (Glucophage) initiation, consistent with possible renal safety. The patient also has reduced renal function (eGFR 13), older age (65), which raises the risk. Top model drivers: min_in_window (+6.09), delta_value (+1.09), current_value (+0.54).",
+   "suggested_action": "Reassess metformin dose/continuation per renal function, and recheck creatinine and eGFR."
+  }
+ ],
+ "n_patients": 122166,
+ "n_alerts": 6693
+}
